@@ -1,0 +1,31 @@
+# ------------------------------------------------------------------------------------------------------#
+# This is the version updates/changes file, it contains all the changes made to the game,
+# listed from newest version to the oldest, feel free to navigate, please don't change past versions.
+#
+# The dates are structured like: (start of development(yyyy/mm/dd)) - (end of development(yyy/mm/dd))| (start of development(24h)) - (end of development(24h))
+# ------------------------------------------------------------------------------------------------------#
+
+# Add New versions here VVVV
+
+# Bive Alpha 1.2.3 "Githubing!" | 2025/05/06 - 2025/05/18 | 13:00 - 15:18
+    - Added Game to github.com
+    - Added new music track "Alpha"
+    - Added new sound effects "cluckin.mp3" & "cluckout.mp3"
+    - Sound effects now play when launching and quitting the game
+    - Added inumerous splashtexts
+    - Added the linecounter.py file to count the lines of code
+    - Added a seed text to the loading screen
+    - Increased bottom render distance (render y is more bigger)
+    - Fixed "name 'volume' is not defined" error
+    - Added a volume text
+
+# Bive Alpha 1.2.2 | 2025/05/05 | 12:56 - 18:21
+    - Added the changes file
+    - Added the "important" folder on the main file system
+    - Added the caves world
+    - Added the generating world loading screen
+    - pathlib is now added for dealing with paths in different Operating Systems
+    - Fixed game not working on Windows
+    - Added splash text rotation on title screen
+    - main.py" file renamed to "MAIN.py"
+    - Added Volume Controls
