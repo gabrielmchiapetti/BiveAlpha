@@ -16,7 +16,6 @@ from os import system as sy
 import time as t
 import math
 from datetime import datetime
-from typing import Final
 import random
 import pathlib
 
