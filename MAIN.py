@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------------------#
-# >>> Bive Alpha 1.2.3
+# >>> Bive Alpha 1.2.3_a
 # >>> Made by Gabriel M. Chiapetti (@gabrielmchiapetti on github)
-# >>> 875 Lines of Code! :)
+# >>> 892 Lines of Code! :)
 #
 # This is the main file, RUN FROM HERE, make sure that the other parts are present too.
 #----------------------------------------------------------------------------------------#
