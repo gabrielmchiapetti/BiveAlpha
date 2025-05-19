@@ -7,6 +7,11 @@
 
 # Add New versions here VVVV
 
+# Bive Alpha 1.2.3_a "Githubing 2!" | 2025/05/19 | 13:01
+    - Fixed the whole of the github bug, i literally forgot
+    about adding the Assets, so the game wouldn't work.
+    - Also the Final function was removed due to importing reasons
+
 # Bive Alpha 1.2.3 "Githubing!" | 2025/05/06 - 2025/05/18 | 13:00 - 15:18
     - Added Game to github.com
     - Added new music track "Alpha"
