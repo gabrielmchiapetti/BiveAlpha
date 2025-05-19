@@ -3,7 +3,6 @@
 # like version, width and height of the screen, window title etc.
 #-----------------------------------------------------------------------#
 
-from typing import Final
 import pathlib
 
 import pygame
@@ -13,7 +12,7 @@ from OpenGL.GLU import *
 pygame.init()
 
 # --- Initial configurations ---
-VERSION: Final[str] = "Alpha 1.2.3" # Immutable, only changeable here
+VERSION: str = "Alpha 1.2.3_a"
 
 SCREEN_WIDTH: int = 1000
 SCREEN_HEIGHT: int = 800
