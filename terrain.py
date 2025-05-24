@@ -73,7 +73,7 @@ def generateTerrainPlains():
 
 
 # --- Muddy Hill Biome ---
-def generateTerrainMuddy_hills():
+def generateTerrainMuddyHills():
     noise = PerlinNoise(octaves=10, seed=current_seed)
     scale = 48.0
     amplitude = 10
@@ -203,23 +203,53 @@ def generateTerrainCaves():
                 else:
                     world[x, y, z] = AIR
 
+# --- Plains Biome ---
+def generateTerrainMossyCaves():
+    noise = PerlinNoise(octaves=4, seed=current_seed)
+    scale = 48.0
+    amplitude = 3
+
+    # --- Add a CLACROCK layer at y = 0 ---
+    for x in range(WORLD_SIZE_X):
+        for z in range(WORLD_SIZE_Z):
+            world[x, 0, z] = CLACROCK
+
+    # --- Terrain generation ---
+    for x in range(WORLD_SIZE_X):
+        for z in range(WORLD_SIZE_Z):
+            height = int(noise([x / scale, z / scale]) * amplitude + (WORLD_SIZE_Y / 2.5))
+            height = max(1, min(height, WORLD_SIZE_Y - 1))  # clamp height
+
+            for y in range(1, WORLD_SIZE_Y):  # start from y=1 to avoid overwriting CLACROCK
+                if y < height - 1:
+                    world[x, y, z] = STONE
+                elif y < height:
+                    world[x, y, z] = MOSS
+                elif y < height + 3:
+                    world[x, y, z] = AIR
+                elif y == height + 4:
+                    world[x, y, z] = MOSS
+                elif y > height + 4:
+                    world[x, y, z] = STONE
+                elif y > height + 6:
+                    world[x, y, z] = DIRT
+                elif y > height + 9:
+                    world[x, y, z] = GRASS
+                else:
+                    world[x, y, z] = AIR
 
 # --- Terrain choosing on the main loop ---
-
 def chooseTypeOfTerrain():
-    if default_terrain == "flatgrass":
-        generateTerrainFlatgrass()
-    if default_terrain == "plains":
-        generateTerrainPlains()
-    elif default_terrain == "muddy hills":
-        generateTerrainMuddy_hills()
-    elif default_terrain == "desert":
-        generateTerrainDesert()
-    elif default_terrain == "snowy plains":
-        generateTerrainSnowy_plains()
-    elif default_terrain == "candyland":
-        generateTerrainCandyland()
-    elif default_terrain == "caves":
-        generateTerrainCaves()
-    else:
-        generateTerrainPlains()
+    terrain_map = {
+        "flatgrass": generateTerrainFlatgrass,
+        "plains": generateTerrainPlains,
+        "muddy hills": generateTerrainMuddyHills,
+        "desert": generateTerrainDesert,
+        "snowy plains": generateTerrainSnowy_plains,
+        "candyland": generateTerrainCandyland,
+        "caves": generateTerrainCaves,
+        "mossy caves": generateTerrainMossyCaves,
+    }
+    # Usa plains como padrão se não encontrar
+    terrain_func = terrain_map.get(default_terrain, generateTerrainPlains)
+    terrain_func()

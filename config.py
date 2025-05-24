@@ -12,24 +12,26 @@ from OpenGL.GLU import *
 pygame.init()
 
 # --- Initial configurations ---
-VERSION: str = "Alpha 1.2.3_a"
+VERSION: str = "Alpha 1.2.4"
+
+BASE_DIR = pathlib.Path(__file__).resolve().parent
 
 SCREEN_WIDTH: int = 1000
 SCREEN_HEIGHT: int = 800
-WINDOW_TITLE: str = (" Bive " + VERSION)
+WINDOW_TITLE: str = (" Bive " + VERSION + " - github.com/gabrielmchiapetti/BiveAlpha")
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-font = pygame.font.Font(pathlib.Path("Assets/Fonts/Baskervville-Regular.ttf") , 38)
-font_splashtext = pygame.font.Font(pathlib.Path("Assets/Fonts/Baskervville-Regular.ttf") , 47)
+font = pygame.font.Font(pathlib.Path(BASE_DIR / "Assets" / "Fonts" / "Baskervville-Regular.ttf") , 38)
+font_splashtext = pygame.font.Font(pathlib.Path(BASE_DIR / "Assets" / "Fonts" / "Baskervville-Regular.ttf") , 47)
 clock = pygame.time.Clock()
 display_surface = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
 # --- Logos and Stuff ---
-logo = pygame.image.load(pathlib.Path("Assets/Logos/carmin.png"))
-icon = pygame.image.load(pathlib.Path("Assets/Logos/icon.ico"))
+logo = pygame.image.load(pathlib.Path(BASE_DIR / "Assets" / "Logos" / "carmin.png"))
+icon = pygame.image.load(pathlib.Path(BASE_DIR / "Assets" / "Logos" / "icon.ico"))
 logo_transform_x: int = 770
 logo_transform_y: int = 260
 logo = pygame.transform.scale(logo, (logo_transform_x, logo_transform_y))
-title_screen_background = pygame.image.load(pathlib.Path("Assets/Textures/titlescreen.png"))
+title_screen_background = pygame.image.load(pathlib.Path(BASE_DIR / "Assets" / "Textures" / "titlescreen.png"))
 
 # ----- Volume Control -----
 volume = 100

@@ -75,6 +75,7 @@ def draw_cube(z, y, x, block_type): # Draws a cube in the specified position
 
 # --- World Drawing ---
 def draw_world(): # Render based on sphere = More optimization
+    
     px, py, pz = player_pos
     render_range = range(-render_distance, render_distance + 1)
 
@@ -107,21 +108,20 @@ def draw_hotbar():
 
     hotbar_size = len(hotbar)
     slot_width = 60
-    slot_height = 35
+    slot_height = 60
     padding = 3
     total_width = hotbar_size * slot_width + (hotbar_size - 1) * padding
+    total_height = hotbar_size * slot_height + (hotbar_size - 1) * padding
     start_x = (SCREEN_WIDTH - total_width) // 2
-    start_y = 20
+    start_y = total_height
 
     for i, block_type in enumerate(hotbar):
         x = start_x + i * (slot_width + padding)
         y = start_y
 
-        # Draws back of the slot
-        if i == selected_slot:
-            glColor4f(0.8, 0.8, 0.8, 0.7) # Selected slot is more bright
-        else:
-            glColor4f(0.3, 0.3, 0.3, 1) # Slot dark gray background
+
+        glColor4f(0.3, 0.3, 0.3, 1) # Slot dark gray background
+        
         glBegin(GL_QUADS)
         glVertex2f(x, y)
         glVertex2f(x + slot_width, y)

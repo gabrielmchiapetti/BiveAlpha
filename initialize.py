@@ -15,7 +15,7 @@ from terrain import *
 # --- Init Pygame ---
 def initPygame():
     pygame.init()
-    pygame_screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+    pygame_screen = pygame.display.set_mode(((SCREEN_WIDTH, SCREEN_HEIGHT)), pygame.RESIZABLE)
     pygame.display.set_caption(WINDOW_TITLE)
     pygame.display.set_icon(icon)
     pygame.mouse.set_visible(False)

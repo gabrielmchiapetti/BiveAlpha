@@ -40,10 +40,50 @@ volume = starting_volume
 
 splashtext_rotation = splashtext_initial_rotation
 
+# ----- Falling Blocks on Title Screen -----
+# --- Variables ---
+falling_blocks_title_screen_size = 42
+falling_blocks_title_screen_count = 10
+falling_blocks_title_screen_speed = 0.5
+falling_blocks_title_screen = []
+
+# --- Initialize Falling Blocks ---
+def init_falling_blocks_title_screen():
+    global falling_blocks_title_screen
+    falling_blocks_title_screen = []
+    block_types = list(BLOCK_COLORS.keys())
+    for _ in range(falling_blocks_title_screen_count):
+        block_type = random.choice(block_types)
+        color = tuple(int(c * 255) for c in BLOCK_COLORS[block_type][:3])
+        x = random.randint(0, 800)
+        y = random.uniform(-50, -1100)
+        falling_blocks_title_screen.append({'x': x, 'y': y, 'color': color, 'speed': falling_blocks_title_screen_speed})
+
+# --- Update the falling blocks ---
+def update_falling_blocks_title_screen():
+    for block in falling_blocks_title_screen:
+        block['y'] += block['speed']
+        if block['y'] > SCREEN_HEIGHT:
+            block['y'] = random.uniform(-50, -1100)
+            block['x'] = random.randint(0, 800)
+            block_types = list(BLOCK_COLORS.keys())
+            block_type = random.choice(block_types)
+            block['color'] = tuple(int(c * 255) for c in BLOCK_COLORS[block_type][:3])
+
+# --- Draw the falling blocks to -> surface (screen) ---
+def draw_falling_blocks_title_screen(surface):
+    for block in falling_blocks_title_screen:
+        pygame.draw.rect(surface, block['color'], (block['x'], int(block['y']), falling_blocks_title_screen_size, falling_blocks_title_screen_size))
+
+
+# ----- Main Title Screen Loop -----
 def titleScreenDo():
-    global splashtext_rotation
+    global splashtext_rotation, title_screen_background
+
     # --- Background Blitting ---
     screen.blit(title_screen_background, (0, 0))
+    update_falling_blocks_title_screen()
+    draw_falling_blocks_title_screen(screen)
 
     # --- Blitting logo ---
     screen.blit(logo, (115, 50))

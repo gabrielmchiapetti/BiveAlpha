@@ -11,10 +11,10 @@ from config import *
 pygame.init()
 
 # --- Opening and selecting the Splash Texts ---
-open_splashtexts = open(pathlib.Path("Assets/Others/Splashtexts.txt")).read().splitlines()
+open_splashtexts = open(pathlib.Path(BASE_DIR / "Assets" / "Others" / "splashtexts.txt")).read().splitlines()
 selected_splashtext = random.choice(open_splashtexts)
 # --- Setting up splash text basics ---
-splashtext_font = pygame.font.Font(pathlib.Path("Assets/Fonts/Baskervville-Regular.ttf"), 40)
+splashtext_font = pygame.font.Font(pathlib.Path(BASE_DIR / "Assets" / "Fonts" / "Baskervville-Regular.ttf"), 40)
 splashtext = splashtext_font.render(selected_splashtext, True, (0, 255, 0))
 splashtext_rotated = pygame.transform.rotate(splashtext, -20)
 splashtext_initial_rotation: float = -20

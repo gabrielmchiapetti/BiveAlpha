@@ -24,6 +24,7 @@ from config import *
 from terrain import *
 from splashtexts import *
 from initialize import *
+from titlescreen import *
 
 # --- Loading Screen loop ---
 volume = starting_volume
@@ -40,6 +41,8 @@ def loadingScreenDo():
                 quit()
     
         screen.blit(title_screen_background, (0, 0))
+        update_falling_blocks_title_screen()
+        draw_falling_blocks_title_screen(screen)
         screen.blit(logo, (115, 50))
 
         screen.blit(terrain_gen_text_loading_screen, (
@@ -59,6 +62,8 @@ def loadingScreenDo():
                 quit()
     
         screen.blit(title_screen_background, (0, 0))
+        update_falling_blocks_title_screen()
+        draw_falling_blocks_title_screen(screen)
         screen.blit(logo, (115, 50))
         screen.blit(terrain_gen_text_loading_screen, (
             SCREEN_WIDTH // 2 - terrain_gen_text_loading_screen.get_width() // 2,
@@ -78,6 +83,8 @@ def loadingScreenDo():
                 quit()
     
         screen.blit(title_screen_background, (0, 0))
+        update_falling_blocks_title_screen()
+        draw_falling_blocks_title_screen(screen)
         screen.blit(logo, (115, 50))
 
         screen.blit(terrain_gen_text_loading_screen, (
@@ -96,6 +103,8 @@ def loadingScreenDo():
                 quit()
     
         screen.blit(title_screen_background, (0, 0))
+        update_falling_blocks_title_screen()
+        draw_falling_blocks_title_screen(screen)
         screen.blit(logo, (115, 50))
 
         screen.blit(seed_text_loading_screen, (

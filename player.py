@@ -35,4 +35,5 @@ desert
 snowy plains
 candyland
 caves
+mossy caves
 """

@@ -34,6 +34,7 @@ SANDSTONE = 8
 CLACROCK = 9
 CANDY = 10
 CAVEAIR = 11
+MOSS = 12
 
 
 # --- Block Colors ---
@@ -48,7 +49,8 @@ BLOCK_COLORS = {
     SANDSTONE: (0.505, 0.486, 0.450, 0.1), # Dark sand color
     CLACROCK: (0.150, 0.1, 0.1, 1 ), # Redish Black
     CANDY: (1.0, 0.412, 0.706, 1 ), # Pink!
-    CAVEAIR: (0.1, 0.1, 0.1, 0.0) # Transparent, amde to be a alternative to air, doesn't appear on the hotbar
+    CAVEAIR: (0.1, 0.1, 0.1, 0.0), # Transparent, made to be a alternative to air, doesn't appear on the hotbar
+    MOSS: (0, 0.3, 0 , 1) # Dark Green
 }
 
 # --- Seed choosing function ---

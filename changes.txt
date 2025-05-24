@@ -7,10 +7,46 @@
 
 # Add New versions here VVVV
 
+# Bive Alpha 1.2.4 "Linux Here I Go!" | 2025/05/19 - 2025/05/24 | 13:45 - 12:37 
+    - THE GAME WORKS ON LINUUUUUUUUUUX!
+        - Error was due to file importing problems
+
+    - Several Minimal code optimizations
+
+    - Revamped importing code
+
+    - Changed the function generateTerrainMuddy_hills() to generateTerrainMuddyHills()
+
+    - Added an inventory option to see all the blocks!
+        - Press "e" while in-game to see list of available blocks in the game! yay!
+        - Hotbar position has changed, now on the top
+
+    - Added the moss block!
+        - Internal ID: 12 (13rd)
+
+    - Added the Mossy Caves biome!
+        - Most complex out of all
+
+    - Added falling blocks to the Title Screen!
+        - Actual blocks in the game!
+            - (Including CAVEAIR!)
+
+    - Refactored the directory opening system to work on Windows/Linux
+        - Added BASE_DIR to know the current directory
+        - Importing syntax rewritten
+
+    - Added FPS controlling to the game
+        - Assign value on desired_fps (On player.py)
+
+    - Added more splashtexts!
+        - Fixed splashtext number 151 bug (Cool easter egg!)
+
+
 # Bive Alpha 1.2.3_a "Githubing 2!" | 2025/05/19 | 13:01
     - Fixed the whole of the github bug, i literally forgot
     about adding the Assets, so the game wouldn't work.
     - Also the Final function was removed due to importing reasons
+
 
 # Bive Alpha 1.2.3 "Githubing!" | 2025/05/06 - 2025/05/18 | 13:00 - 15:18
     - Added Game to github.com
