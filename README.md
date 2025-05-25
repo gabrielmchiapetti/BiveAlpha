@@ -1,6 +1,6 @@
 ![carmin](https://github.com/user-attachments/assets/b5690853-ccaf-4b2e-833e-96c6119a789c)
 
-Bive Alpha is a perlin noised based procedural generation game, with a solid foundation on [Pygame](https://pygame.org/) and [PyOpenGl](https://pyopengl.sourceforge.net/). It's mainly focused on exploration of a world, made up of blocks. Currently there are 7 biomes on the game: Flatgrass, Plains, Muddy Hills, Desert, Snowy Plains, Candyland and Caves.
+Bive Alpha is a perlin noised based procedural generation game, with a solid foundation on [Pygame](https://pygame.org/) and [PyOpenGl](https://pyopengl.sourceforge.net/). It's mainly focused on exploration of a world, made up of blocks. Currently there are 8 biomes on the game: Flatgrass, Plains, Muddy Hills, Desert, Snowy Plains, Candyland, Caves and Mossy Caves.
 Bive is a good way to study and mess with procedural generation, due to it's simple algorithm of terrain creation, don't believe? Look it up yourself!
 
 ## Dependencies
