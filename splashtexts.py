@@ -11,8 +11,13 @@ from config import *
 pygame.init()
 
 # --- Opening and selecting the Splash Texts ---
-open_splashtexts = open(pathlib.Path(BASE_DIR / "Assets" / "Others" / "splashtexts.txt")).read().splitlines()
-selected_splashtext = random.choice(open_splashtexts)
+splashtext_file_path = pathlib.Path(BASE_DIR / "Assets" / "Others" / "splashtexts.txt")
+selected_splashtext = None
+with open(splashtext_file_path, "r", encoding="utf-8") as f:
+    for i, line in enumerate(f, start=1):
+        if random.randrange(i) == 0:
+            selected_splashtext = line.strip()
+
 # --- Setting up splash text basics ---
 splashtext_font = pygame.font.Font(pathlib.Path(BASE_DIR / "Assets" / "Fonts" / "Baskervville-Regular.ttf"), 40)
 splashtext = splashtext_font.render(selected_splashtext, True, (0, 255, 0))

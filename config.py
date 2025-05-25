@@ -12,7 +12,7 @@ from OpenGL.GLU import *
 pygame.init()
 
 # --- Initial configurations ---
-VERSION: str = "Alpha 1.2.4"
+VERSION: str = "Alpha 1.2.4_a"
 
 BASE_DIR = pathlib.Path(__file__).resolve().parent
 

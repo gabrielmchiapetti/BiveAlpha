@@ -45,7 +45,7 @@ def generateTerrainFlatgrass():
 # --- Plains Biome ---
 def generateTerrainPlains():
     noise = PerlinNoise(octaves=4, seed=current_seed)
-    scale = 48.0
+    scale = 38.0
     amplitude = 8
 
     # --- Add a CLACROCK layer at y = 0 ---

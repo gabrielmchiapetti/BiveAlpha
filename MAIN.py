@@ -71,8 +71,6 @@ from loadingscreen import *
 
 
 
-
-
 # --- Initializing Pygame ---
 initPygame()
 # ----- Title Screen Loop -----

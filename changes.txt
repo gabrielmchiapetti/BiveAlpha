@@ -7,6 +7,15 @@
 
 # Add New versions here VVVV
 
+# Bive Alpha 1.2.4_a "Linux Here I Go! pt. 2"| 2025/05/25 - 2025/04/25 | 13:29 -
+    - Added an options file
+        - Inside the (new) options folder
+    - Options code is now modified for dealing with the options.txt file
+    - Added a lot more splashtexts (+ Easter Egg!)
+    - Fixed splash text reading system
+        - Now it can read a specific line without dumping everything into ram
+        (Will fix future problems if splashtexts.txt is too big)
+
 # Bive Alpha 1.2.4 "Linux Here I Go!" | 2025/05/19 - 2025/05/24 | 13:45 - 12:37 
     - THE GAME WORKS ON LINUUUUUUUUUUX!
         - Error was due to file importing problems

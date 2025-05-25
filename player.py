@@ -18,22 +18,15 @@ player_velocity_y: float = 0
 is_jumping: bool = False
 jump_height: float = 0
 
-# --- Optional Configurations ---
-mouse_sensitivity: float = 0.1 # (0.1)
-desired_fps: int = 55
-render_distance = 10
-starting_volume: int = 100
+# ----- Reading the options from the options.txt file -----
 
-# --- Terrain Settings ---
-default_terrain = "plains"
+# --- Reading the file ---
+with open(pathlib.Path(BASE_DIR / "Options" / "options.txt")) as open_options:
+    read_options = [line.strip() for line in open_options if line.strip()]
 
-"""
-flatgrass
-plains
-muddy hills
-desert
-snowy plains
-candyland
-caves
-mossy caves
-"""
+# --- Assign the lines values to the variables ---
+mouse_sensitivity = float(read_options[12])
+desired_fps = float(read_options[13])
+render_distance = int(read_options[14])
+starting_volume = int(read_options[15])
+default_terrain = str(read_options[16])

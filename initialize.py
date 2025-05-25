@@ -3,8 +3,10 @@
 # the main loop
 #------------------------------------------------------------#
 
-import pygame
+import sys as sy
 import time as t
+
+import pygame
 
 from config import *
 from terrain import *
