@@ -10,7 +10,7 @@ Bive is a good way to study and mess with procedural generation, due to it's sim
 ## How to play 
 Here is a guide of how you can play Bive on your PC:
 
-  1. First download the Bive Source code to your machine.
+  1. First download the Bive [Source code](https://github.com/gabrielmchiapetti/BiveAlpha/releases) to your machine.
   2. Extract the code into a folder wherever you like
   3. Navigate to that folder and open terminal, do not enter the assets folder! Make sure you can see the MAIN.py file
   4. Type this command:
