@@ -33,11 +33,18 @@ python3 MAIN.py
 ![Python 3 11 18_05_2025 15_15_55](https://github.com/user-attachments/assets/cdf59a36-0b67-488b-8a97-a5fb28ad524f)
 ![Python 3 11 18_05_2025 15_17_59](https://github.com/user-attachments/assets/612f21af-c83e-4b7b-bda2-df6c7e394148)
 
+## Player Settings
+The Player settings are located in the **Options** folder, on the **options.txt** file, in that file there are the settings for:
 
+> Mouse sensitivity  
+> Desired FPS (Frames Per Second)  
+> Camera Render Distance  
+> Default Volume (Also controllable in the title screen)  
+> Default Biome  
 
 ## How to Modify
 
-It seems like you vibe with the game! So first, read the content on the LICENSE file carefully, after that if you wan't to modify the game for things like messing with terrain gen, changing biome, adding blocks, etc. you really should consider also reading the following info:
+It seems like you vibe with the game! So first, read the content on the LICENSE file carefully, after that if you wan't to modify the game for things like messing with terrain gen, adding biomes and blocks, etc. you really should consider also reading the following info:
 
 ## What each files contains:
 
