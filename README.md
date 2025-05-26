@@ -29,10 +29,14 @@ python3 MAIN.py
   6. The game should be running! If not then leave the error on the [issues page](https://github.com/gabrielmchiapetti/BiveAlpha/issues).
 
 ### Screenshots!
-
-![Python 3 11 18_05_2025 15_15_55](https://github.com/user-attachments/assets/cdf59a36-0b67-488b-8a97-a5fb28ad524f)
-![Python 3 11 18_05_2025 15_17_59](https://github.com/user-attachments/assets/612f21af-c83e-4b7b-bda2-df6c7e394148)
-
+  
+![Python 3 11 25_05_2025 14_08_25](https://github.com/user-attachments/assets/8165a383-147a-4db5-a3f0-5248cd7654aa)
+_The Muddy Hills biome_
+    
+![Python 3 11 25_05_2025 14_55_06](https://github.com/user-attachments/assets/e090448a-8013-433a-9794-b1904193b098)
+_The Caves biome with inventory open (Early dev)_
+  
+  
 ## Player Settings
 The Player settings are located in the **Options** folder, on the **options.txt** file, in that file there are the settings for:
 
