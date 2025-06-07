@@ -1,13 +1,14 @@
 #-----------------------------------------------------------------#
 # This is a purely debugging file, it's only purpose is to count
 # all of the lines on Bive
+# > It doesn't count blank lines
 #-----------------------------------------------------------------#
 
-import time as t
 import pathlib
 
 from config import VERSION
 
+# --- Intializing line counter -----
 counterOfLines = 0
 def countLinesFromFiles(file):
 
@@ -24,6 +25,7 @@ def countLinesFromFiles(file):
             counterOfLines += 1
 
 
+# ----- Counting it up! -----
 def countLinesAllFiles():
     countLinesFromFiles("blocks.py")
     countLinesFromFiles("config.py")
@@ -37,11 +39,10 @@ def countLinesAllFiles():
     countLinesFromFiles("splashtexts.py")
     countLinesFromFiles("terrain.py")
     countLinesFromFiles("titlescreen.py")
+    countLinesFromFiles("musicplayer.py")
 
 countLinesAllFiles()
-t.sleep(1)
 print("The total number of lines in Bive", VERSION, " is:")
 print(counterOfLines)
-t.sleep(1)
-print("Analized a total of 12 files")
+print("Analized a total of 13 files")
 

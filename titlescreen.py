@@ -2,14 +2,10 @@
 # This is the titlescreen file, containing basic rendering functions for splash texts and others.
 #-------------------------------------------------------------------------------------------------#
 
-import os
-from os import system as sy
 import time as t
-import math
-from datetime import datetime
-from typing import Final
 import random
-import pathlib
+import sys
+from os import system as sy
 
 import pygame
 
@@ -22,6 +18,7 @@ from config import *
 from terrain import *
 from splashtexts import *
 from initialize import *
+from musicplayer import *
 
 pygame.init()
 
@@ -31,12 +28,12 @@ initPygame()
 
 # --- Setting texts for the title screen ---
 about_text_title_screen = font.render("Bive " + VERSION + " by Gabriel M. Chiapetti", True, (0, 0, 0))
-start_text_title_screen = font.render("> Press RETURN to play <", True, (255, 255, 255))
-quit_text_title_screen = font.render("> Press ESC to quit <", True, (255, 0, 0))
-volume_text_title_screen = font.render("> -/+ for volume <", True, (90, 40, 40))
+start_text_title_screen = font.render(" Press RETURN to play ", True, (255, 255, 255))
+quit_text_title_screen = font.render(" Press ESC to quit ", True, (255, 0, 0))
+volume_text_title_screen = font.render(" -/+ for volume ", True, (90, 40, 40))
 
 # --- Setting volume and playing music ---
-volume = starting_volume
+volume = initial_volume
 
 splashtext_rotation = splashtext_initial_rotation
 
@@ -44,7 +41,7 @@ splashtext_rotation = splashtext_initial_rotation
 # --- Variables ---
 falling_blocks_title_screen_size = 42
 falling_blocks_title_screen_count = 10
-falling_blocks_title_screen_speed = 0.5
+falling_blocks_title_screen_speed = 0.3
 falling_blocks_title_screen = []
 
 # --- Initialize Falling Blocks ---
@@ -77,6 +74,7 @@ def draw_falling_blocks_title_screen(surface):
 
 
 # ----- Main Title Screen Loop -----
+
 def titleScreenDo():
     global splashtext_rotation, title_screen_background
 
@@ -114,20 +112,20 @@ def titleScreenDo():
 
     
     # ----- Key Pressing detection -----
-    volume_control()
+    volumeControl()
     
     # --- Quitting and Generating keys detection ---
     if pygame.key.get_pressed()[pygame.K_ESCAPE]:
-        pygame.mixer.music.load(pathlib.Path("Assets/Audios/cluckout.mp3"))
-        pygame.mixer.music.play()
+        pygame.mixer.Sound(sound_cluckout)
         t.sleep(0.2)
-        quit()
+        pygame.quit()
+        sys.exit()  # Ensures no further code runs that depends on Pygame
 
     # --- Quitting ---
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             for i in volume():
                 volume -= 1
-            quit()
+            sys.exit()
 
     pygame.display.flip()

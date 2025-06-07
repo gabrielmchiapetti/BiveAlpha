@@ -12,7 +12,7 @@ from OpenGL.GLU import *
 pygame.init()
 
 # --- Initial configurations ---
-VERSION: str = "Alpha 1.2.4_a"
+VERSION: str = "Alpha 1.2.5_a"
 
 BASE_DIR = pathlib.Path(__file__).resolve().parent
 
@@ -25,6 +25,7 @@ font_splashtext = pygame.font.Font(pathlib.Path(BASE_DIR / "Assets" / "Fonts" / 
 clock = pygame.time.Clock()
 display_surface = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
+
 # --- Logos and Stuff ---
 logo = pygame.image.load(pathlib.Path(BASE_DIR / "Assets" / "Logos" / "carmin.png"))
 icon = pygame.image.load(pathlib.Path(BASE_DIR / "Assets" / "Logos" / "icon.ico"))
@@ -35,13 +36,13 @@ title_screen_background = pygame.image.load(pathlib.Path(BASE_DIR / "Assets" / "
 
 # ----- Volume Control -----
 volume = 100
-def volume_control():
+def volumeControl():
     global volume
 
-    if pygame.key.get_pressed()[pygame.K_EQUALS]:  # Shift + '=' = '+'
+    if pygame.key.get_pressed()[pygame.K_EQUALS]:  # '='
         volume = min(volume + 1, 100)
-        pygame.mixer.music.set_volume(volume / 100)  # Normalize to 0.0 - 1.0
+        pygame.mixer.music.set_volume(volume / 100) # Normalize to 0.0 - 1.0
 
-    if pygame.key.get_pressed()[pygame.K_MINUS]:
+    if pygame.key.get_pressed()[pygame.K_MINUS]: # '+'
         volume = max(volume - 1, 0)
-        pygame.mixer.music.set_volume(volume / 100)  # Normalize to 0.0 - 1.0
+        pygame.mixer.music.set_volume(volume / 100)

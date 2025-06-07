@@ -9,6 +9,4 @@ import pygame
 pygame.init()
 
 # --- Simple inventory (Hotbar) ---
-hotbar = [GRASS, DIRT, STONE, WOOD, LEAVES, SAND, SANDSTONE, SNOW, CANDY, CLACROCK, MOSS]
-selected_slot = len(hotbar)
-inventory = { block: 0 for block in hotbar } # Block counter (Initially 0)
+hotbar = [GRASS, DIRT, STONE, WOOD, LEAVES, SAND, SANDSTONE, SNOW, ICE, CANDY, CLACROCK, MOSS]

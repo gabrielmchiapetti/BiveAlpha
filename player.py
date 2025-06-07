@@ -28,5 +28,6 @@ with open(pathlib.Path(BASE_DIR / "Options" / "options.txt")) as open_options:
 mouse_sensitivity = float(read_options[12])
 desired_fps = float(read_options[13])
 render_distance = int(read_options[14])
-starting_volume = int(read_options[15])
-default_terrain = str(read_options[16])
+fov = float(read_options[15])
+initial_volume = int(read_options[16])
+default_terrain = str(read_options[17])

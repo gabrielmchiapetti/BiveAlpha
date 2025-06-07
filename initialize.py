@@ -3,13 +3,11 @@
 # the main loop
 #------------------------------------------------------------#
 
-import sys as sy
-import time as t
-
 import pygame
 
 from config import *
 from terrain import *
+from player import *
 
 
 # ----- Initialization -----
@@ -37,7 +35,7 @@ def initGl():
 
     # --- OpenGl perspective ---
     glMatrixMode(GL_PROJECTION)
-    gluPerspective(70, (SCREEN_WIDTH / SCREEN_HEIGHT), 0.1, 100.0) # FOV, Aspect Ratio, Near clip, Far clip
+    gluPerspective(fov, (SCREEN_WIDTH / SCREEN_HEIGHT), 0.1, 100.0) # FOV, Aspect Ratio, Near clip, Far clip
     glMatrixMode(GL_MODELVIEW)
     glClearColor(0.6, 0.8, 1.0, 1) # Set Color for sky
 

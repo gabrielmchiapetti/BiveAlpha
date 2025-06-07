@@ -4,14 +4,8 @@
 # the OpenGl window, added it for cosmetic looks.
 #------------------------------------------------------------------------#
 
-import os
-from os import system as sy
 import time as t
-import math
-from datetime import datetime
-from typing import Final
 import random
-import pathlib
 
 import pygame
 
@@ -27,12 +21,12 @@ from initialize import *
 from titlescreen import *
 
 # --- Loading Screen loop ---
-volume = starting_volume
+volume = initial_volume
 
 def loadingScreenDo():
     global volume
     # --- Preparing Terrain Gen ---
-    terrain_gen_text_loading_screen = font.render("Starting generation...", True, (205, 0, 205))
+    terrain_gen_text_loading_screen = font.render("Starting generation...", True, (205, 140, 205))
     for i in range(random.randint(400, 650)):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:

@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------------------#
-# >>> Bive Alpha 1.2.4
+# >>> Bive Alpha 1.2.5_a
 # >>> Made by Gabriel M. Chiapetti (@gabrielmchiapetti on github)
-# >>> 926 Lines of Code! :)
+# >>> 980 Lines of Code! :)
 #
 # This is the main file, RUN FROM HERE, make sure that the other parts are present too.
 #----------------------------------------------------------------------------------------#
@@ -12,12 +12,9 @@
 
 # --- Basic Dependencies, already comes with python ---
 import os
-from os import system as sy
+import sys
 import time as t
 import math
-from datetime import datetime
-import random
-import pathlib
 
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 
@@ -27,18 +24,10 @@ try:
 except Exception:
         print("Downloading dependencies (pygame)...")
         t.sleep(0.5)
-        sy("pip3 install pygame --break-system-packages")
-t.sleep(5)
+        sy("pip3 install pygame --break-system-packages") # --break-system-packages is needed for resolving the "Device is externally managed" pip problem 
+t.sleep(5)                                                # (there is no other way around)
 import pygame
 from pygame.locals import *
-
-try:
-	import numpy
-except Exception:
-        print("Downloading dependencies (numpy)...")
-        t.sleep(0.5)
-        sy("pip3 install numpy --break-system-packages")
-import numpy as np
 
 try:
 	import perlin_noise
@@ -68,21 +57,22 @@ from splashtexts import *
 from initialize import *
 from titlescreen import *
 from loadingscreen import *
-
+from musicplayer import *
 
 
 # --- Initializing Pygame ---
 initPygame()
+
 # ----- Title Screen Loop -----
 splashtext_rotation = splashtext_initial_rotation
 
 # --- Music and Sound Effects ---
-pygame.mixer.music.load(pathlib.Path(BASE_DIR / "Assets" / "Audios" / "cluckin.mp3"))
+pygame.mixer.music.load(sound_cluckin)
 pygame.mixer.music.play()
 t.sleep(0.4)
-volume = starting_volume
-pygame.mixer.music.load(pathlib.Path(BASE_DIR / "Assets" / "Audios" / "grand_opening.mp3"))
-pygame.mixer.music.set_volume(starting_volume)
+volume = initial_volume
+pygame.mixer.music.load(music_grand_opening)
+pygame.mixer.music.set_volume(initial_volume)
 pygame.mixer.music.play()
 
 # ----- Title Screen loop -----
@@ -108,12 +98,17 @@ while running_loading_screen:
 # --- Starting OpenGl (Needs to be done here) ---
 pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT), DOUBLEBUF | OPENGL)
 initGl()
+
+# --- Stopping Pygame Mixer ---
+pygame.mixer.music.stop()
+
 # ----- Main Game loop ------
 running = True
 while running:
 
     # --- Controling FPS ---
     clock.tick(desired_fps)
+    print(clock.get_fps())
 
     # --- Event handling ---
     for event in pygame.event.get():
@@ -169,20 +164,22 @@ while running:
     # --- Rendering ---
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
     glLoadIdentity()
-    glMaterialfv(GL_FRONT, GL_SHININESS, 6)
-    glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE)
 
     glRotatef(player_rot[1], 1, 0, 0) # Vertical rotation (Pitch)
     glRotatef(player_rot[0], 0, 1, 0) # Horizontal rotation (Yaw)
     glTranslatef(-player_pos[2], -player_pos[1], -player_pos[0]) # Camera Translation
 
-    draw_world()
+    drawWorld()
 
     if pygame.key.get_pressed()[pygame.K_e]:
-        draw_hotbar()
+        drawHotbar()
 
-    draw_crosshair()
+    drawCrosshair()
+
+
+    # --- Music Playing ---
+    # Soon!
 
     pygame.display.flip()
 
-pygame.quit()
+sys.exit()

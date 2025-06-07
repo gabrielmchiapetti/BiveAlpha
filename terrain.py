@@ -6,7 +6,6 @@
 import time as t
 from perlin_noise import PerlinNoise
 import random
-import numpy as np
 from player import *
 
 from blocks import *
@@ -130,10 +129,10 @@ def generateTerrainDesert():
 
 
 # --- Snowy Plains Biome ---
-def generateTerrainSnowy_plains():
+def generateTerrainSnowyPlains():
     noise = PerlinNoise(octaves=3, seed=current_seed)
-    scale = 48.0
-    amplitude = 10
+    scale = 64
+    amplitude = 4
 
     for x in range(WORLD_SIZE_X):
         for z in range(WORLD_SIZE_Z):
@@ -148,11 +147,21 @@ def generateTerrainSnowy_plains():
                 if y < height - 1:
                     world[x, y, z] = STONE
                 elif y < height:
-                    world[x, y, z] = GRASS
+                    world[x, y, z] = MOSS
                 elif y == height:
-                    world[x, y, z] = SNOW
+                    # Small chance to generate ice puddles
+                    if random.random() < 0.002:
+                        for dx in range(round(random.uniform(-4, -2)), random.randint(3, 5)):       # Choosing the size (x)
+                            for dz in range(round(random.uniform(-4, -2)), random.randint(3, 5)):   # Choosing the size (z)
+                                xi = x + dx
+                                zi = z + dz
+                                if 0 <= xi < WORLD_SIZE_X and 0 <= zi < WORLD_SIZE_Z:
+                                    world[xi, y, zi] = ICE
+                    else:
+                        world[x, y, z] = SNOW
                 else:
                     world[x, y, z] = AIR
+
 
 # --- Candyland! :D ---
 def generateTerrainCandyland():
@@ -245,7 +254,7 @@ def chooseTypeOfTerrain():
         "plains": generateTerrainPlains,
         "muddy hills": generateTerrainMuddyHills,
         "desert": generateTerrainDesert,
-        "snowy plains": generateTerrainSnowy_plains,
+        "snowy plains": generateTerrainSnowyPlains,
         "candyland": generateTerrainCandyland,
         "caves": generateTerrainCaves,
         "mossy caves": generateTerrainMossyCaves,

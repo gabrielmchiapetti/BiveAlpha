@@ -1,11 +1,79 @@
 # ------------------------------------------------------------------------------------------------------#
 # This is the version updates/changes file, it contains all the changes made to the game,
-# listed from newest version to the oldest, feel free to navigate, please don't change past versions.
+# listed from newest version to the oldest, feel free to navigate.
 #
-# The dates are structured like: (start of development(yyyy/mm/dd)) - (end of development(yyy/mm/dd))| (start of development(24h)) - (end of development(24h))
+# The dates are structured like: (start of development(yyyy/mm/dd)) - (end of development(yyyy/mm/dd))| (start of development(24h)) - (end of development(24h))
 # ------------------------------------------------------------------------------------------------------#
 
 # Add New versions here VVVV
+
+# Bive Alpha 1.2.5_a "Get Ready for this!" | 2025/05/26 - 2025/06/07 | 14:34 - 14:05
+
+    - Added a new feature to the Snowy Plains biome!
+        - Added the ICE Block (14th, internal ID: 13)
+        - Random Ice Puddles on the biome!
+        - Grass was changed to Moss in the snowy plains (No one cares lol)
+
+    - Numpy not needed no more, Bye!
+        - Numpy is no more needed as a dependencie!
+        - Removed a bunch of useless imports too
+
+    - drawWorld() calculation improved
+        - r-squared + single-int algorithm (See graphics.py for more!)
+        - Sadly, with great powers comes great responsabilities...
+            - Some screen artifacts may show up, but perfomance is heavily boosted
+
+    - drawHotbar() algorithm improved
+        - Basic optimization
+
+    - drawCube algorithm improved
+        - Removed redundant checks
+        - Compact variable names
+        - Removed numpy array
+    
+    - Replaced all of the "pygame.quit()" and "quit()" to "exit"
+        - Makes .exe files compatible
+
+    - Added more needed commentary overall
+        - on linecounter.py
+        - etc. (I forgot)
+    
+    - Added a lot more splashtexts!
+        - Cool easteregg for the internet OGs!
+        - Fixed grammatical error on the "Continuous!" splashtext
+        - Changed "Numpy" splashtext to "PyOpenGl"
+
+    - Changed the function volume_control() to volumeControl()
+
+    - Changed these graphics related functions names:
+        - draw_cube() to drawCube()
+        - draw_world() to drawWorld()
+        - draw_hotbar() to drawHotbar()
+        - draw_crosshair to drawCrosshair()
+
+    - Changed GenerateTerrainSnowy_plains() to GenerateTerrainSnowyPlains()
+
+    - Changed the variable starting_volume to initial_volume
+
+    - Updated sound importing, file importing now moved to musicplayer.py
+        - Removed deprecate use of old file importing system (titlescreen.py)
+
+    - Removed those ">   <" from the titlescreen
+
+    - Removed unnecessary commentary from graphics.py
+        - And rewritten some other comments
+
+    - Removed unneeded basic importing on thw whole project
+
+    - Removed the inventory and selected_slot variables
+        - They were useless
+
+    - Removed unused content
+        - Baskerville Italic Font
+        - All the other logos except carmin.png and icon.ico
+        - The images titlescreengrey.png and blackopacity.png
+
+
 
 # Bive Alpha 1.2.4_a "Linux Here I Go! pt. 2"| 2025/05/25 - 2025/04/25 | 13:29 -
     - Added an options file
@@ -15,6 +83,7 @@
     - Fixed splash text reading system
         - Now it can read a specific line without dumping everything into ram
         (Will fix future problems if splashtexts.txt is too big)
+
 
 # Bive Alpha 1.2.4 "Linux Here I Go!" | 2025/05/19 - 2025/05/24 | 13:45 - 12:37 
     - THE GAME WORKS ON LINUUUUUUUUUUX!

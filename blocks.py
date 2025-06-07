@@ -35,6 +35,7 @@ CLACROCK = 9
 CANDY = 10
 CAVEAIR = 11
 MOSS = 12
+ICE = 13
 
 
 # --- Block Colors ---
@@ -50,7 +51,8 @@ BLOCK_COLORS = {
     CLACROCK: (0.150, 0.1, 0.1, 1 ), # Redish Black
     CANDY: (1.0, 0.412, 0.706, 1 ), # Pink!
     CAVEAIR: (0.1, 0.1, 0.1, 0.0), # Transparent, made to be a alternative to air, doesn't appear on the hotbar
-    MOSS: (0, 0.3, 0 , 1) # Dark Green
+    MOSS: (0, 0.3, 0 , 1), # Dark Green
+    ICE: (0, 0.8, 1, 0.2) # Light Aqua
 }
 
 # --- Seed choosing function ---
