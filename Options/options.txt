@@ -1,18 +1,19 @@
-#-----------------------------------------------------------------------------------------#
+#-------------------------------------------------------------------------------------------#
 # This is the file for the game settings, all based around the user. LEAVE THE DASHES!!!!
-#-----------------------------------------------------------------------------------------#
--
+#-------------------------------------------------------------------------------------------#
 -
 1. Mouse sensitivity (float)
 2. Desired FPS (Frames Per Second) (int)
 3. Render Distance (Blocks - int)
-4. Starting volume (int)
-5. Default Biome (str)
+4. FOV (float)
+5. Starting volume (int)
+6. Default Biome (str)
 -
 -
 0.1
 55.0
 10
+70
 100
-muddy hills
+snowy plains
 (flatgrass, plains, muddy hills, desert, snowy plains, candyland, caves, mossy caves)
