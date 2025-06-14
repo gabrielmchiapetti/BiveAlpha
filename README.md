@@ -85,7 +85,7 @@ It seems like you vibe with the game! So first, read the content on the LICENSE 
 ### linecounter.py
 > Its a Line Counter that counts lines from all the code files of the game (Including itself)
 
-# About the assets folder
+# About the Assets folder
 The assets folder is where all the music/splashtexts/images are stored, it is structured like this:
 
 ### Audios
