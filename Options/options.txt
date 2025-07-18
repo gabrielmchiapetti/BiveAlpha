@@ -3,17 +3,16 @@
 #-------------------------------------------------------------------------------------------#
 -
 1. Mouse sensitivity (float)
-2. Desired FPS (Frames Per Second) (int)
+2. Desired FPS (Frames Per Second) (int or float)
 3. Render Distance (Blocks - int)
-4. FOV (float)
+4. FOV (float or int)
 5. Starting volume (int)
-6. Default Biome (str)
+6. Default Biome (str, [flatgrass, plains, muddy hills, desert, snowy plains, candyland, caves, mossy caves])
 -
 -
 0.1
-55.0
+60.0
 10
-70
+65
 100
-snowy plains
-(flatgrass, plains, muddy hills, desert, snowy plains, candyland, caves, mossy caves)
+plains
