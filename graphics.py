@@ -14,7 +14,6 @@ from player import *
 
 pygame.init()
 
-
 # ------- Cube Drawing -------
 def drawCube(z, y, x, block_type):
     if block_type == AIR or not isBlockExposedToAir(z, y, x):
@@ -41,7 +40,7 @@ def drawCube(z, y, x, block_type):
 
     glPushMatrix()
     glTranslatef(x + 0.5, y + 0.5, z + 0.5)
-    glColor4fv(BLOCK_COLORS.get(block_type, (1, 1, 1, 1)))
+    glColor4fv(BLOCK_COLORS.get(block_type, (1, 1, 1)))
 
     glBegin(GL_QUADS)
     for i, face in enumerate(faces):
@@ -53,7 +52,6 @@ def drawCube(z, y, x, block_type):
     glEnd()
 
     glPopMatrix()
-
 
 
 # ----- World Drawing -----
@@ -85,6 +83,7 @@ def drawWorld(): # r-squared + single-int algorithm
                     block_type = world[x, y, z]
                     if block_type != AIR:
                         drawCube(x, y, z, block_type)
+
 
 # ----- Hotbar Drawing -----
 def drawHotbar():

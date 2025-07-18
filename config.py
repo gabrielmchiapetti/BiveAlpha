@@ -4,6 +4,7 @@
 #-----------------------------------------------------------------------#
 
 import pathlib
+import datetime
 
 import pygame
 from OpenGL.GL import *
@@ -12,31 +13,35 @@ from OpenGL.GLU import *
 pygame.init()
 
 # --- Initial configurations ---
-VERSION: str = "Alpha 1.2.5_a"
+VERSION: str = "Alpha 1.2.6"
 
 BASE_DIR = pathlib.Path(__file__).resolve().parent
 
-SCREEN_WIDTH: int = 1000
-SCREEN_HEIGHT: int = 800
+SCREEN_WIDTH: int = 1100
+SCREEN_HEIGHT: int = 900
 WINDOW_TITLE: str = (" Bive " + VERSION + " - github.com/gabrielmchiapetti/BiveAlpha")
-screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-font = pygame.font.Font(pathlib.Path(BASE_DIR / "Assets" / "Fonts" / "Baskervville-Regular.ttf") , 38)
-font_splashtext = pygame.font.Font(pathlib.Path(BASE_DIR / "Assets" / "Fonts" / "Baskervville-Regular.ttf") , 47)
+SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+WEBSITE = "https://github.com/gabrielmchiapetti/BiveAlpha"
+
+font = pygame.font.Font(pathlib.Path(BASE_DIR / "Assets" / "Fonts" / "Baskervville-Regular.ttf") , 44)
+font_splashtext = pygame.font.Font(pathlib.Path(BASE_DIR / "Assets" / "Fonts" / "Baskervville-Regular.ttf"), 35)
+
 clock = pygame.time.Clock()
-display_surface = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+mouse_x, mouse_y = pygame.mouse.get_pos()
+
+datetime = datetime.datetime.now()
+datetime_now = datetime.strftime('%H-%M-%S %Y-%m-%d')
 
 
 # --- Logos and Stuff ---
 logo = pygame.image.load(pathlib.Path(BASE_DIR / "Assets" / "Logos" / "carmin.png"))
 icon = pygame.image.load(pathlib.Path(BASE_DIR / "Assets" / "Logos" / "icon.ico"))
-logo_transform_x: int = 770
-logo_transform_y: int = 260
-logo = pygame.transform.scale(logo, (logo_transform_x, logo_transform_y))
+logo = pygame.transform.scale2x(logo)
 title_screen_background = pygame.image.load(pathlib.Path(BASE_DIR / "Assets" / "Textures" / "titlescreen.png"))
 
 # ----- Volume Control -----
 volume = 100
-def volumeControl():
+def volumeControlDo():
     global volume
 
     if pygame.key.get_pressed()[pygame.K_EQUALS]:  # '='

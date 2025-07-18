@@ -27,38 +27,47 @@ pygame.init()
 initPygame()
 
 # --- Setting texts for the title screen ---
-about_text_title_screen = font.render("Bive " + VERSION + " by Gabriel M. Chiapetti", True, (0, 0, 0))
-start_text_title_screen = font.render(" Press RETURN to play ", True, (255, 255, 255))
-quit_text_title_screen = font.render(" Press ESC to quit ", True, (255, 0, 0))
-volume_text_title_screen = font.render(" -/+ for volume ", True, (90, 40, 40))
+about_text = font.render("Bive " + VERSION + " by Gabriel M. Chiapetti", True, (0, 0, 0))
+rect_about_text = about_text.get_rect()
+rect_about_text.center = (2 + about_text.get_width() // 2, SCREEN_HEIGHT - about_text.get_height() // 2)
+
+content_start_text = "Singleplayer"
+start_text = font.render(content_start_text, True, (255, 255, 255))
+rect_start_text = start_text.get_rect()
+
+content_quit_text = "Quit"
+quit_text = font.render(" Press ESC to quit ", True, (255, 0, 0))
+rect_quit_text = quit_text.get_rect()
+
+volume_text = font.render(" -/+ for volume ", True, (90, 40, 40))
 
 # --- Setting volume and playing music ---
 volume = initial_volume
 
-splashtext_rotation = splashtext_initial_rotation
+splashtext_rotation = -20
 
 # ----- Falling Blocks on Title Screen -----
 # --- Variables ---
-falling_blocks_title_screen_size = 42
-falling_blocks_title_screen_count = 10
-falling_blocks_title_screen_speed = 0.3
-falling_blocks_title_screen = []
+falling_blocks_size = 52
+falling_blocks_count = 15
+falling_blocks_speed = 0.6
+falling_blocks = []
 
 # --- Initialize Falling Blocks ---
-def init_falling_blocks_title_screen():
-    global falling_blocks_title_screen
-    falling_blocks_title_screen = []
+def initFallingBlocks():
+    global falling_blocks
+    falling_blocks = []
     block_types = list(BLOCK_COLORS.keys())
-    for _ in range(falling_blocks_title_screen_count):
+    for _ in range(falling_blocks_count):
         block_type = random.choice(block_types)
         color = tuple(int(c * 255) for c in BLOCK_COLORS[block_type][:3])
-        x = random.randint(0, 800)
-        y = random.uniform(-50, -1100)
-        falling_blocks_title_screen.append({'x': x, 'y': y, 'color': color, 'speed': falling_blocks_title_screen_speed})
+        x = random.randint(0, SCREEN_WIDTH)
+        y = random.uniform(-50, -(SCREEN_HEIGHT + falling_blocks_size + 10))
+        falling_blocks.append({'x': x, 'y': y, 'color': color, 'speed': falling_blocks_speed})
 
 # --- Update the falling blocks ---
-def update_falling_blocks_title_screen():
-    for block in falling_blocks_title_screen:
+def updateFallingBlocks():
+    for block in falling_blocks:
         block['y'] += block['speed']
         if block['y'] > SCREEN_HEIGHT:
             block['y'] = random.uniform(-50, -1100)
@@ -68,64 +77,73 @@ def update_falling_blocks_title_screen():
             block['color'] = tuple(int(c * 255) for c in BLOCK_COLORS[block_type][:3])
 
 # --- Draw the falling blocks to -> surface (screen) ---
-def draw_falling_blocks_title_screen(surface):
-    for block in falling_blocks_title_screen:
-        pygame.draw.rect(surface, block['color'], (block['x'], int(block['y']), falling_blocks_title_screen_size, falling_blocks_title_screen_size))
+def drawFallingBlocks():
+    for block in falling_blocks:
+        pygame.draw.rect(SCREEN, block['color'], (block['x'], int(block['y']), falling_blocks_size, falling_blocks_size))
 
 
 # ----- Main Title Screen Loop -----
-
 def titleScreenDo():
-    global splashtext_rotation, title_screen_background
+    global splashtext_rotation, title_screen_background, start_text, content_start_text, rect_start_text, quit_text, content_quit_text, rect_quit_text, about_text, rect_about_text
+
+    # --- Volume control ---
+    volumeControlDo()
+
+    # --- Getting Mouse position ---
+    mouse_x, mouse_y = pygame.mouse.get_pos()
 
     # --- Background Blitting ---
-    screen.blit(title_screen_background, (0, 0))
-    update_falling_blocks_title_screen()
-    draw_falling_blocks_title_screen(screen)
+    SCREEN.blit(title_screen_background, (0, 0))
+    updateFallingBlocks()
+    drawFallingBlocks()
 
     # --- Blitting logo ---
-    screen.blit(logo, (115, 50))
+    SCREEN.blit(logo, ((SCREEN_WIDTH // 2) - logo.get_width() // 2, 50))
 
     # --- Blitting splash text --
     splash_text_rotated = pygame.transform.rotate(splashtext, splashtext_rotation)
-    splashtext_rotation += 0.025
+    splashtext_rotation += 0.032
 
-    screen.blit(splash_text_rotated, (385 + logo.get_width() - 425, 130 - logo.get_height() // 2 + 40))
+    SCREEN.blit(splash_text_rotated, ((SCREEN_WIDTH // 2) + (logo.get_width() // 3.), 130 - logo.get_height() // 2 + 40))
+
+    # --- Start Text ---
+    if rect_start_text.collidepoint(mouse_x, mouse_y):
+        start_text = font.render(content_start_text, True, (237, 228, 109))
+        rect_start_text = start_text.get_rect()
+        rect_start_text.center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)  # Center rect
+    else:
+        start_text = font.render(content_start_text, True, (255, 255, 255))
+        rect_start_text = start_text.get_rect()
+        rect_start_text.center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
+
+    SCREEN.blit(start_text, rect_start_text)
 
     # --- About text ---
-    screen.blit(about_text_title_screen, (1, SCREEN_HEIGHT -about_text_title_screen.get_height()))
+    rect_about_text = about_text.get_rect()
+    rect_about_text.center = (2 + about_text.get_width() // 2, SCREEN_HEIGHT - about_text.get_height() // 2)
 
-    # --- Start text ---
-    screen.blit(start_text_title_screen, (
-        SCREEN_WIDTH // 2 - start_text_title_screen.get_width() // 2,
-        SCREEN_HEIGHT // 2 - start_text_title_screen.get_height() // 2))
+    SCREEN.blit(about_text, rect_about_text)
     
-    # --- Quitting Text ---
-    screen.blit(quit_text_title_screen, (
-        SCREEN_WIDTH // 2 - quit_text_title_screen.get_width() // 2,
-        SCREEN_HEIGHT // 2 - quit_text_title_screen.get_height() // 2 + start_text_title_screen.get_height()))
+    # --- Quit Text ---
+    if rect_quit_text.collidepoint(mouse_x, mouse_y):
+        quit_text = font.render(content_quit_text, True, (237, 228, 109))
+        rect_quit_text = quit_text.get_rect()
+        rect_quit_text.center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + start_text.get_height())  # Center rect
+    else:
+        quit_text = font.render(content_quit_text, True, (255, 255, 255))
+        rect_quit_text = quit_text.get_rect()
+        rect_quit_text.center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + start_text.get_height())
+
+    SCREEN.blit(quit_text, rect_quit_text)
 
     # --- Volume Text ---
-    screen.blit(volume_text_title_screen, (
-        SCREEN_WIDTH // 2 - volume_text_title_screen.get_width() // 2,
-        SCREEN_HEIGHT // 2 - volume_text_title_screen.get_height() // 2 + start_text_title_screen.get_height() + (quit_text_title_screen.get_height() * 2)))
-
+    SCREEN.blit(volume_text, (
+        SCREEN_WIDTH // 2 - volume_text.get_width() // 2,
+        SCREEN_HEIGHT // 2 - volume_text.get_height() // 2 + start_text.get_height() + (quit_text.get_height() * 2)))
     
-    # ----- Key Pressing detection -----
-    volumeControl()
-    
-    # --- Quitting and Generating keys detection ---
-    if pygame.key.get_pressed()[pygame.K_ESCAPE]:
-        pygame.mixer.Sound(sound_cluckout)
-        t.sleep(0.2)
-        pygame.quit()
-        sys.exit()  # Ensures no further code runs that depends on Pygame
-
-    # --- Quitting ---
+    # --- Event Handling ---
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            for i in volume():
-                volume -= 1
             sys.exit()
 
     pygame.display.flip()

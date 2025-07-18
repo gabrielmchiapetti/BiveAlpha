@@ -44,7 +44,7 @@ def generateTerrainFlatgrass():
 # --- Plains Biome ---
 def generateTerrainPlains():
     noise = PerlinNoise(octaves=4, seed=current_seed)
-    scale = 38.0
+    scale = 32.0
     amplitude = 8
 
     # --- Add a CLACROCK layer at y = 0 ---
@@ -56,7 +56,9 @@ def generateTerrainPlains():
     for x in range(WORLD_SIZE_X):
         for z in range(WORLD_SIZE_Z):
             height = int(noise([x / scale, z / scale]) * amplitude + (WORLD_SIZE_Y / 2.5))
-            height = max(1, min(height, WORLD_SIZE_Y - 1))  # clamp height
+            height = max(1, min(height, WORLD_SIZE_Y - 1))  # Clamp height
+
+            water_layer = max(1, height - 4)  # Second lowest layer of grass
 
             for y in range(1, WORLD_SIZE_Y):  # start from y=1 to avoid overwriting CLACROCK
                 if y < height - 2:
@@ -67,8 +69,6 @@ def generateTerrainPlains():
                     world[x, y, z] = GRASS
                 else:
                     world[x, y, z] = AIR
-
-
 
 
 # --- Muddy Hill Biome ---
@@ -98,7 +98,6 @@ def generateTerrainMuddyHills():
                     world[x, y, z] = AIR
 
 
-
 # --- Desert Biome ---
 def generateTerrainDesert():
     noise = PerlinNoise(octaves=3, seed=current_seed)
@@ -125,7 +124,6 @@ def generateTerrainDesert():
                     world[x, y, z] = SAND
                 else:
                     world[x, y, z] = AIR
-
 
 
 # --- Snowy Plains Biome ---
@@ -163,7 +161,7 @@ def generateTerrainSnowyPlains():
                     world[x, y, z] = AIR
 
 
-# --- Candyland! :D ---
+# --- Candyland :D ---
 def generateTerrainCandyland():
     noise = PerlinNoise(octaves=2.5, seed=current_seed)
     scale = 70.0
@@ -188,7 +186,7 @@ def generateTerrainCandyland():
                 else:
                     world[x, y, z] = AIR
 
-# --- Candyland! :D ---
+# --- Caves (Indev) ---
 def generateTerrainCaves():
     noise = PerlinNoise(octaves=2.5, seed=current_seed)
     scale = 70.0
@@ -212,7 +210,7 @@ def generateTerrainCaves():
                 else:
                     world[x, y, z] = AIR
 
-# --- Plains Biome ---
+# --- Mossy Caves Biome ---
 def generateTerrainMossyCaves():
     noise = PerlinNoise(octaves=4, seed=current_seed)
     scale = 48.0
@@ -259,6 +257,6 @@ def chooseTypeOfTerrain():
         "caves": generateTerrainCaves,
         "mossy caves": generateTerrainMossyCaves,
     }
-    # Usa plains como padrão se não encontrar
+    # Use plains as default if default_terrain isn't on terrain_map
     terrain_func = terrain_map.get(default_terrain, generateTerrainPlains)
     terrain_func()

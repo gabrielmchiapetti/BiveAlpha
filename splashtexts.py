@@ -19,13 +19,7 @@ with open(splashtext_file_path, "r", encoding="utf-8") as f:
             selected_splashtext = line.strip()
 
 # --- Setting up splash text basics ---
-splashtext_font = pygame.font.Font(pathlib.Path(BASE_DIR / "Assets" / "Fonts" / "Baskervville-Regular.ttf"), 40)
-splashtext = splashtext_font.render(selected_splashtext, True, (0, 255, 0))
-splashtext_rotated = pygame.transform.rotate(splashtext, -20)
-splashtext_initial_rotation: float = -20
-splashtext_initial_font_size = 40
-
-splashtext_font_size = splashtext_initial_font_size  # These goes here, so python can detect their are not repeated
-splashtext_rotation = splashtext_initial_rotation
+splashtext = font_splashtext.render(selected_splashtext, True, (0, 255, 0))
+splashtext_rotation = -20
 splashtext_rotated = pygame.transform.rotate(splashtext, splashtext_rotation)
 splashtext_pulse_direction = 1

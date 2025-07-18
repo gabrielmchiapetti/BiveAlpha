@@ -1,20 +1,21 @@
 #----------------------------------------------------------------------------------------#
-# >>> Bive Alpha 1.2.5_a
+# >>> Bive Alpha 1.2.6
 # >>> Made by Gabriel M. Chiapetti (@gabrielmchiapetti on github)
-# >>> 980 Lines of Code! :)
 #
 # This is the main file, RUN FROM HERE, make sure that the other parts are present too.
 #----------------------------------------------------------------------------------------#
 
-# -> This is the Main application, covering dependecies importing, initialization, keyboard input
-# and the game loop.
+# -> This is the Main application, piecing all of the other files and itself apart
+# to make the game.
 
 
 # --- Basic Dependencies, already comes with python ---
 import os
+import subprocess
 import sys
 import time as t
 import math
+import webbrowser
 
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 
@@ -24,17 +25,25 @@ try:
 except Exception:
         print("Downloading dependencies (pygame)...")
         t.sleep(0.5)
-        sy("pip3 install pygame --break-system-packages") # --break-system-packages is needed for resolving the "Device is externally managed" pip problem 
-t.sleep(5)                                                # (there is no other way around)
+        subprocess.call("pip3 install pygame --break-system-packages", shell=True) # --break-system-packages is needed for resolving the "Device is externally managed" pip problem 
+t.sleep(5)                                                                         # (there is no other way around)
 import pygame
 from pygame.locals import *
+
+try:
+	import numpy
+except Exception:
+        print("Downloading dependencies (numpy)...")
+        t.sleep(0.5)
+        subprocess.call("pip3 install numpy --break-system-packages", shell=True)
+import numpy
 
 try:
 	import perlin_noise
 except Exception:
         print("Downloading dependencies (perlin_noise)...")
         t.sleep(0.5)
-        sy("pip3 install perlin_noise --break-system-packages")
+        subprocess.call("pip3 install perlin_noise --break-system-packages", shell=True)
 import perlin_noise
 
 try:
@@ -42,7 +51,7 @@ try:
 except Exception:
         print("Downloading dependencies (PyOpenGl)...")
         t.sleep(0.5)
-        sy("pip3 install PyOpenGl --break-system-packages")
+        subprocess.call("pip3 install PyOpenGl --break-system-packages", shell=True)
 from OpenGL.GL import *
 from OpenGL.GLU import *
 
@@ -59,40 +68,66 @@ from titlescreen import *
 from loadingscreen import *
 from musicplayer import *
 
-
 # --- Initializing Pygame ---
 initPygame()
 
 # ----- Title Screen Loop -----
-splashtext_rotation = splashtext_initial_rotation
+splashtext_rotation = -20
 
 # --- Music and Sound Effects ---
+volume = initial_volume
+pygame.mixer.music.set_volume(initial_volume)
 pygame.mixer.music.load(sound_cluckin)
 pygame.mixer.music.play()
-t.sleep(0.4)
-volume = initial_volume
+
 pygame.mixer.music.load(music_grand_opening)
-pygame.mixer.music.set_volume(initial_volume)
 pygame.mixer.music.play()
+
+# --- Setting the cursor ---
+pygame.mouse.set_cursor(*pygame.cursors.tri_left)
 
 # ----- Title Screen loop -----
 running_title = True
-init_falling_blocks_title_screen()
+initFallingBlocks()
 while running_title:
+    clock.tick(100)
+    
     titleScreenDo()
-    clock.tick(120)
-    if pygame.key.get_pressed()[pygame.K_RETURN]: # Needs to be done here
-        break
+
+    rect_start_text.center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
+    rect_quit_text.center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + start_text.get_height())
+
+    # --- Mouse positioning and button checking ---
+    mouse_x, mouse_y = pygame.mouse.get_pos()
+    mouse_buttons = pygame.mouse.get_pressed()
+
+    # --- Clickable Menus ---
+    if mouse_buttons[0]:  # Left Mouse button
+        if rect_start_text.collidepoint(mouse_x, mouse_y):
+            running_title = False
+        if rect_quit_text.collidepoint(mouse_x, mouse_y):
+            pygame.mixer.Sound(sound_cluckout)
+            t.sleep(0.2)
+            pygame.quit()
+            sys.exit()
+        if rect_about_text.collidepoint(mouse_x, mouse_y):
+            webbrowser.open(WEBSITE)
+
+    # --- Event handling ---
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
 
 # ----- Loading Screen loop -----
 running_loading_screen = True
 while running_loading_screen:
+
     loadingScreenDo()
     for i in range(volume):
         volume = max(volume - 1, 0)
         pygame.mixer.music.set_volume(volume / 100)
         running_loading_screen = False
-
 
 
 # --- Starting OpenGl (Needs to be done here) ---
@@ -108,7 +143,6 @@ while running:
 
     # --- Controling FPS ---
     clock.tick(desired_fps)
-    print(clock.get_fps())
 
     # --- Event handling ---
     for event in pygame.event.get():
@@ -123,7 +157,6 @@ while running:
 
     # --- Keyboard handling  ---
     move_vec = [0, 0, 0] #Front/Back, Top/Bottom, Left/Right
-
     if pygame.key.get_pressed()[pygame.K_w]:
         move_vec[0] -= 1
     if pygame.key.get_pressed()[pygame.K_s]:
@@ -138,7 +171,7 @@ while running:
         move_vec[1] += 1
     if pygame.key.get_pressed()[pygame.K_ESCAPE]:
         running = False
-        
+
     # --- Horizontal Movement ---
     if move_vec[0] != 0 or move_vec[2] != 0:
         # Normalize horizontal movement vector for not walking diagonally faster
@@ -155,7 +188,6 @@ while running:
         # --- Horizontal Movement ---
         player_pos[0] -= final_dx  # X-axis (left/right)
         player_pos[2] -= final_dz  # Z-axis (forward/backward)
-
     # --- Vertical movement ---
     new_pos_y = player_pos[1] + move_vec[1] * player_speed * 0.8  # Y movement (scaled a bit)
     player_pos[1] = new_pos_y
@@ -175,10 +207,6 @@ while running:
         drawHotbar()
 
     drawCrosshair()
-
-
-    # --- Music Playing ---
-    # Soon!
 
     pygame.display.flip()
 

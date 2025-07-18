@@ -7,6 +7,107 @@
 
 # Add New versions here VVVV
 
+# Bive Alpha 1.2.6 "Click and Catchy!" | 2025/06/13 - 2025/07/18| 13:41 - 12:18
+
+    ## News
+    - Some reddit posts have been published on various communities:
+        - Here: https://www.reddit.com/user/chiapetti64/
+
+    ## Additions
+    - Added the Water Block!
+        - Internal ID: 14
+        - Doesn't apperar on the hotbar
+        - For a seecret update!
+
+    - Now you can click and select the Menus!
+        - The old keybinds will not be used anymore
+    
+    - New cursor!
+        - It's one of the cool defaults from pygame
+
+    ## Changes
+    - changes.txt format has been changed (Old updates will stay the same)
+        - Thanks Eric Barone (Creator of Stardew Valley)!
+            - Inspired me to change!
+
+    - Block colors have been updated
+        - Sand
+        - Sandstone
+
+    - Plains biome generation algorithm has been changed
+        - It looks more like a real plains biome
+
+    - New Icon!
+        - Made in voxelpaint.online (Thanks!)
+
+    - Now mouse isn't hidden and grabbed in the titlescreen
+        - And it's grabbed and hidden on the OpenGl screen (The Game)
+
+    - Game screen size has changed
+        - The default is now 1100px by 900px
+        - Default font has also been increased in size (40 -> 44)
+
+    - Default FOV is now 60.0
+
+    - Falling blocks algorithm have been reworked
+        - More size and speed for the blocks
+        - Now it also adapts to the screen size
+
+    -sys() has been changed to subprocess.call()
+        - Due to sys being a module
+        - Old method would result in an error if trying to download packages
+
+    - volumeControl() has been changed to volumeControlDo()
+
+    ## Removals
+    - splashtexts.txt has been completely reset!
+        - Because there is a new splashtext size, so i had to change it all
+        - Way cooler splashtexts!
+
+    - linecounter.py has been deleted
+        - Due to it being fully useless
+
+    - Music "alpha.mp3" has been removed
+        - It was useless
+
+    ## Variables and Functions
+    - Now volume is correctly set for the default
+        - Sound "cluckin.mp3" will play with default volume
+
+    - Variables had their name changed:
+        - screen to SCREEN
+
+    - init_falling_blocks_title_screen(), update_falling_blocks_title_screen(), draw_falling_blocks_title_screen()
+        - Had their name changed, removed the "_" and the "_title_screen"
+
+    - terrain_gen_text_loading_screen was changed to current_terrain_gen_text
+        - Due to it being changed a lot during the loading screen
+
+    - splash_text_initial_rotation has been removed
+        - All of its mentioning was changed to -20
+
+    - Fixed unnecessary confusion with splashtexts fonts:
+        - There were two variables:
+            - font_splashtext (on config.py[was useless])
+            - splashtext_font (on splashtexts.py[The right one])
+
+            - They had different font sizes but were quite the same
+
+            - So I deleted splashtext_font and the correct one now is font_splashtext on config.py
+
+    - Added x_mouse and y_mouse for dealing with the clickable menu
+        - On config.py
+        - Good to notice most of the time they needed to be reset to update mouse position each frame
+
+    - Removed the display_configuration variable on config.py
+        - It was useless
+
+    - More needed spacement added on config.py
+
+    - Removed unnecessary comments on:
+        - blocks.py
+    
+
 # Bive Alpha 1.2.5_a "Get Ready for this!" | 2025/05/26 - 2025/06/07 | 14:34 - 14:05
 
     - Added a new feature to the Snowy Plains biome!

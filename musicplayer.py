@@ -27,7 +27,6 @@ all_musics = [music_grand_opening, music_alpha]
 
 # --- Main function ---
 def playMusic():
-
     if not pygame.mixer.music.get_busy():
         print(volume)
         if random.randint(1, 200) == 1:
