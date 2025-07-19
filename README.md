@@ -10,8 +10,8 @@ Bive is a good way to study and mess with procedural generation, due to it's sim
 ## How to play 
 Here is a guide of how you can play Bive on your PC:
 
-  1. First download the Bive [Source code](https://github.com/gabrielmchiapetti/BiveAlpha/releases) to your machine.
-  2. Extract the code into a folder wherever you like
+  1. First download the [latest release](https://github.com/gabrielmchiapetti/BiveAlpha/releases) to your machine.
+  2. Extract the release file into a folder wherever you like
   3. Navigate to that folder and open terminal, do not enter the assets folder! Make sure you can see the MAIN.py file
   4. Type this command:
 
@@ -34,7 +34,7 @@ python3 MAIN.py
 _The Muddy Hills biome_
     
 ![Python 3 11 25_05_2025 14_55_06](https://github.com/user-attachments/assets/e090448a-8013-433a-9794-b1904193b098)
-_The Caves biome with inventory open (Early dev)_
+_The Caves biome (Early dev) with inventory open_
   
   
 ## Player Settings
@@ -43,7 +43,8 @@ The Player settings are located in the **Options** folder, on the **options.txt*
 > Mouse sensitivity  
 > Desired FPS (Frames Per Second)  
 > Camera Render Distance  
-> Default Volume (Also controllable in the title screen)  
+> FOV  
+> Starting Volume (Also controllable in the title screen)  
 > Default Biome  
 
 ## How to Modify
@@ -80,27 +81,24 @@ It seems like you vibe with the game! So first, read the content on the LICENSE 
 > Mouse sensitivity, default terrain, render distance, starting volume and misc.
 
 ### splashtexts.py
-> Splash texts selecting mechanics
-
-### linecounter.py
-> Its a Line Counter that counts lines from all the code files of the game (Including itself)
+> Splashtexts selecting mechanics
 
 # About the Assets folder
 The assets folder is where all the music/splashtexts/images are stored, it is structured like this:
 
 ### Audios
-  * All of the music and soundtracks, and also their original sources.
+  * All of the music and sound effects.
     
 ### Fonts
-  * It is the home of the fonts, it being Baskervville and it's licenses.
+  * It is the home of the fonts, it being Baskervville and its licenses.
     
 ### Logos
-  * All of the logos and icons for the game, all except two are used, but i just wanted to have something to switch the logos for sometimes.  
+  * The logo and icon for the game.
 
 ### Others
   * Only contains the splashtexts at the moment, no future things planned for here, maybe some promo material later, just maybe.
 
 ### Textures
-  * All of the textures (Backgrounds at the moment) used in the game, even though there is not any textures here, I kept the name from a huge fail of texture adding.
+  * All of the textures (Background at the moment) used in the game, even though there is not any textures here, I kept the name from a huge fail of texture adding.
 
 # Anyways! I hope you have fun with Bive! Good Luck :D, if you need any any help, message me! I'm always online.
